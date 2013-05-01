@@ -12,11 +12,11 @@ namespace AvaTaxCalcSOAP
     class DocumentLoader
     {
         //This loads the invoice (or return) located at the specified path and returns a GetTaxRequest object for tax calculation.
-        public static GetTaxRequest Load(string DocPath)
+        public static GetTaxRequest Load()
         {
             GetTaxRequest req = new GetTaxRequest();
             //loads the invoice file
-            string[] txtInv = File.ReadAllLines(@DocPath);
+            string[] txtInv = File.ReadAllLines("INV0001.txt");
 
             //Parses header-level data from the invoice file
             req.DocCode = txtInv[0].Split(':')[1] + DateTime.Now.ToString();
@@ -59,11 +59,7 @@ namespace AvaTaxCalcSOAP
                 itemline.Qty = Convert.ToDouble(item[3]);
                 itemline.Amount = Convert.ToDecimal(item[4]) * Convert.ToDecimal(itemline.Qty);
                 req.Lines.Add(itemline);
-            }
-
-
-
-            
+            }            
             return req;
         }
     }

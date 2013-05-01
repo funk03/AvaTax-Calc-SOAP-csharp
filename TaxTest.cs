@@ -10,84 +10,84 @@ namespace AvaTaxCalcSOAP
 {
     class TaxTest
     {
-        public static void cancelTaxTest(GetTaxRequest calcreq, string AcctNum, string LicKey, string webaddr)
+        public static void cancelTaxTest(GetTaxRequest calcReq, string acctNum, string licKey, string webAddr)
         {
             TaxSvc tSvc = new TaxSvc(); //create service object and add configuration
-            tSvc.Configuration.Security.Account = AcctNum;
-            tSvc.Configuration.Security.License = LicKey;
-            tSvc.Configuration.Url = webaddr;
-            tSvc.Configuration.ViaUrl = webaddr;
+            tSvc.Configuration.Security.Account = acctNum;
+            tSvc.Configuration.Security.License = licKey;
+            tSvc.Configuration.Url = webAddr;
+            tSvc.Configuration.ViaUrl = webAddr;
             //create request object
-            CancelTaxRequest cancelreq = new CancelTaxRequest();
-            cancelreq.CompanyCode = calcreq.CompanyCode;
-            cancelreq.DocCode = calcreq.DocCode;
-            cancelreq.DocType = calcreq.DocType;
-            cancelreq.CancelCode = CancelCode.DocDeleted; //this should vary according to your use case.
+            CancelTaxRequest cancelReq = new CancelTaxRequest();
+            cancelReq.CompanyCode = calcReq.CompanyCode;
+            cancelReq.DocCode = calcReq.DocCode;
+            cancelReq.DocType = calcReq.DocType;
+            cancelReq.CancelCode = CancelCode.DocDeleted; //this should vary according to your use case.
             try
             {
-                CancelTaxResult cancelresult = tSvc.CancelTax(cancelreq); //Let's void this document to demonstrate tax/cancel
+                CancelTaxResult cancelResult = tSvc.CancelTax(cancelReq); //Let's void this document to demonstrate tax/cancel
                 //You would normally initiate a tax/cancel call upon voiding or deleting the document in your system.
-                Console.WriteLine("CancelTax test result: " + cancelresult.ResultCode.ToString() + ", Document Voided");
+                Console.WriteLine("CancelTax test result: " + cancelResult.ResultCode.ToString() + ", Document Voided");
                 //Let's display the result of the cancellation. At this point, you would allow your system to complete the delete/void.
             }
             catch (Exception ex)
             { Console.WriteLine("CancelTax test: Exception " + ex.Message); }
         }
-        public static void getTaxTest(GetTaxRequest calcreq, string AcctNum, string LicKey, string webaddr)
+        public static void getTaxTest(GetTaxRequest calcReq, string acctNum, string licKey, string webAddr)
         {
             TaxSvc tSvc = new TaxSvc(); //create service object and add configuration
-            tSvc.Configuration.Security.Account = AcctNum;
-            tSvc.Configuration.Security.License = LicKey;
-            tSvc.Configuration.Url = webaddr;
-            tSvc.Configuration.ViaUrl = webaddr;
+            tSvc.Configuration.Security.Account = acctNum;
+            tSvc.Configuration.Security.License = licKey;
+            tSvc.Configuration.Url = webAddr;
+            tSvc.Configuration.ViaUrl = webAddr;
             try
             {
-                GetTaxResult calcresult = tSvc.GetTax(calcreq); //Calculates tax on document
-                Console.WriteLine("GetTax test result: " + calcresult.ResultCode.ToString() + ", " +
-                "TotalTax=" + calcresult.TotalTax.ToString()); //At this point, you would write the tax calculated to your database and display to the user.
+                GetTaxResult calcResult = tSvc.GetTax(calcReq); //Calculates tax on document
+                Console.WriteLine("GetTax test result: " + calcResult.ResultCode.ToString() + ", " +
+                "TotalTax=" + calcResult.TotalTax.ToString()); //At this point, you would write the tax calculated to your database and display to the user.
             }
             catch (Exception ex)
             { Console.WriteLine("GetTax test: Exception " + ex.Message); }
         }
-        public static void postTaxTest(GetTaxRequest calcreq, string AcctNum, string LicKey, string webaddr)
+        public static void postTaxTest(GetTaxRequest calcReq, string acctNum, string licKey, string webAddr)
         {
             TaxSvc tSvc = new TaxSvc(); //create service object and add configuration
-            tSvc.Configuration.Security.Account = AcctNum;
-            tSvc.Configuration.Security.License = LicKey;
-            tSvc.Configuration.Url = webaddr;
-            tSvc.Configuration.ViaUrl = webaddr;
-            PostTaxRequest postreq = new PostTaxRequest();
-            postreq.Commit = true; //will change the document state to "committed" - note that this can also be done by calling GetTax with Commit = true.
-            postreq.CompanyCode = calcreq.CompanyCode;
-            postreq.DocCode = calcreq.DocCode;
-            postreq.DocType = calcreq.DocType;
-            postreq.DocDate = calcreq.DocDate;
+            tSvc.Configuration.Security.Account = acctNum;
+            tSvc.Configuration.Security.License = licKey;
+            tSvc.Configuration.Url = webAddr;
+            tSvc.Configuration.ViaUrl = webAddr;
+            PostTaxRequest postReq = new PostTaxRequest();
+            postReq.Commit = true; //will change the document state to "committed" - note that this can also be done by calling GetTax with Commit = true.
+            postReq.CompanyCode = calcReq.CompanyCode;
+            postReq.DocCode = calcReq.DocCode;
+            postReq.DocType = calcReq.DocType;
+            postReq.DocDate = calcReq.DocDate;
             //TotalAmount and TotalTax are required fields and should represent 
             //the pre-tax total amount and total calculated tax amount on the recorded transaction.
             //A mismatch will return a warning from the service, but it will still complete the PostTax.
-            postreq.TotalAmount = 0; 
-            postreq.TotalTax = 0;
+            postReq.TotalAmount = 0; 
+            postReq.TotalTax = 0;
             try
             {
-                PostTaxResult postresult = tSvc.PostTax(postreq);
-                Console.WriteLine("PostTax test result: " + postresult.ResultCode.ToString());
+                PostTaxResult postResult = tSvc.PostTax(postReq);
+                Console.WriteLine("PostTax test result: " + postResult.ResultCode.ToString());
             }
             catch (Exception ex)
             { Console.WriteLine("PostTax test: Exception " + ex.Message); }
         }
-        public static void getTaxHistoryTest(GetTaxRequest calcreq, string AcctNum, string LicKey, string webaddr)
+        public static void getTaxHistoryTest(GetTaxRequest calcReq, string acctNum, string licKey, string webAddr)
         {
             TaxSvc tSvc = new TaxSvc(); //create service object and add configuration
-            tSvc.Configuration.Security.Account = AcctNum;
-            tSvc.Configuration.Security.License = LicKey;
-            tSvc.Configuration.Url = webaddr;
-            tSvc.Configuration.ViaUrl = webaddr;
+            tSvc.Configuration.Security.Account = acctNum;
+            tSvc.Configuration.Security.License = licKey;
+            tSvc.Configuration.Url = webAddr;
+            tSvc.Configuration.ViaUrl = webAddr;
 
             GetTaxHistoryRequest histReq = new GetTaxHistoryRequest();
-            histReq.CompanyCode = calcreq.CompanyCode;
+            histReq.CompanyCode = calcReq.CompanyCode;
             histReq.DetailLevel = DetailLevel.Tax; //note that you can pull back a different tax detail here than was originally used on the calculation
-            histReq.DocCode = calcreq.DocCode;
-            histReq.DocType = calcreq.DocType;
+            histReq.DocCode = calcReq.DocCode;
+            histReq.DocType = calcReq.DocType;
             try {
                 GetTaxHistoryResult histResult = tSvc.GetTaxHistory(histReq);
                 Console.WriteLine("GetTaxHistory test result: " + histResult.ResultCode.ToString()+", "+"Tax calculated was: "+

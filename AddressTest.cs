@@ -11,23 +11,23 @@ namespace AvaTaxCalcSOAP
     class AddressTest
     {
         //will pull address out of parsed invoice object and validate it
-        public static void validateAddressTest(GetTaxRequest calcreq, string AcctNum, string LicKey, string webaddr)
+        public static void validateAddressTest(GetTaxRequest calcReq, string acctNum, string licKey, string webAddr)
         {
             AddressSvc addrSvc = new AddressSvc(); //create service object and add configuration
-            addrSvc.Configuration.Security.Account = AcctNum;
-            addrSvc.Configuration.Security.License = LicKey;
-            addrSvc.Configuration.Url = webaddr;
-            addrSvc.Configuration.ViaUrl = webaddr;
+            addrSvc.Configuration.Security.Account = acctNum;
+            addrSvc.Configuration.Security.License = licKey;
+            addrSvc.Configuration.Url = webAddr;
+            addrSvc.Configuration.ViaUrl = webAddr;
 
             //we also need to create a validation request object
-            ValidateRequest addrreq = new ValidateRequest();
-            addrreq.Address = calcreq.DestinationAddress;
+            ValidateRequest addrReq = new ValidateRequest();
+            addrReq.Address = calcReq.DestinationAddress;
 
             try
             {
-                ValidateResult addressresult = addrSvc.Validate(addrreq); //Validates a given address.
-                Console.WriteLine("ValidateAddress test result: " + addressresult.ResultCode.ToString() + ", Address="
-                    + addressresult.Addresses[0].Line1 + " " + addressresult.Addresses[0].City + " " + addressresult.Addresses[0].Region + " " + addressresult.Addresses[0].PostalCode);//At this point, you would display the validated result to the user for approval, and write it to the customer record.
+                ValidateResult addressResult = addrSvc.Validate(addrReq); //Validates a given address.
+                Console.WriteLine("ValidateAddress test result: " + addressResult.ResultCode.ToString() + ", \nAddress="
+                    + addressResult.Addresses[0].Line1 + " " + addressResult.Addresses[0].City + " " + addressResult.Addresses[0].Region + " " + addressResult.Addresses[0].PostalCode);//At this point, you would display the validated result to the user for approval, and write it to the customer record.
             }
             catch (Exception ex)
             { Console.WriteLine("ValidateAddress test: Exception " + ex.Message); }
