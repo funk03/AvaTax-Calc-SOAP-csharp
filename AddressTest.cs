@@ -22,6 +22,7 @@ namespace AvaTaxCalcSOAP
             //we also need to create a validation request object
             ValidateRequest addrReq = new ValidateRequest();
             addrReq.Address = calcReq.DestinationAddress;
+            addrReq.Coordinates = true; //Used to return geographical coordinates on a successful validation. Default is false.
 
             try
             {
