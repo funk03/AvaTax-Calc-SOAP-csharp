@@ -41,6 +41,7 @@ namespace AvaTaxCalcSOAP
             //functionality available, please take a look at the AvaTaxCalcSOAP-extended sample.
 
             Console.WriteLine("Done");
+            Console.ReadLine();
         }
     }
 }
