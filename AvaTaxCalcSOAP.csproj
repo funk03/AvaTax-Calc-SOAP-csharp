@@ -46,10 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddressTest.cs" />
-    <Compile Include="DocumentLoader.cs" />
+    <Compile Include="CancelTaxTest.cs" />
+    <Compile Include="GetTaxHistoryTest.cs" />
+    <Compile Include="GetTaxTest.cs" />
+    <Compile Include="PingTest.cs" />
+    <Compile Include="PostTaxTest.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="TaxTest.cs" />
+    <Compile Include="ValidateAddressTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
