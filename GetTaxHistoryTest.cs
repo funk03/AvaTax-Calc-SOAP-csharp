@@ -12,28 +12,39 @@
             string licenseKey = "A1B2C3D4E5F6G7H8";
             string serviceURL = "https://development.avalara.net";
 
-            TaxSvc taxSvc = new TaxSvc();
+            var taxSvc = new TaxSvc
+            {
+                // Header Level Parameters
+                // Required Header Parameters
+                Configuration =
+                {
+                    Security =
+                    {
+                        Account = accountNumber,
+                        License = licenseKey
+                    },
+                    Url = serviceURL,
+                    ViaUrl = serviceURL
+                },
+                Profile =
+                {
+                    Client = "AvaTaxSample",
 
-            // Header Level Parameters
-            // Required Header Parameters
-            taxSvc.Configuration.Security.Account = accountNumber;
-            taxSvc.Configuration.Security.License = licenseKey;
-            taxSvc.Configuration.Url = serviceURL;
-            taxSvc.Configuration.ViaUrl = serviceURL;
-            taxSvc.Profile.Client = "AvaTaxSample";
+                    // Optional Header Parameters
+                    Name = "Development"
+                }
+            };
 
-            // Optional Header Parameters
-            taxSvc.Profile.Name = "Development";
+            var getTaxHistoryRequest = new GetTaxHistoryRequest
+            {
+                // Required Request Parameters
+                CompanyCode = "APITrialCompany",
+                DocType = DocumentType.SalesInvoice,
+                DocCode = "INV001",
 
-            GetTaxHistoryRequest getTaxHistoryRequest = new GetTaxHistoryRequest();
-
-            // Required Request Parameters
-            getTaxHistoryRequest.CompanyCode = "APITrialCompany";
-            getTaxHistoryRequest.DocType = DocumentType.SalesInvoice;
-            getTaxHistoryRequest.DocCode = "INV001";
-
-            // Optional Request Parameters
-            getTaxHistoryRequest.DetailLevel = DetailLevel.Tax;
+                // Optional Request Parameters
+                DetailLevel = DetailLevel.Tax
+            };
 
             GetTaxHistoryResult getTaxHistoryResult = taxSvc.GetTaxHistory(getTaxHistoryRequest);
 

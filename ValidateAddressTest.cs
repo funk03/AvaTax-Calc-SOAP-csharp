@@ -12,37 +12,48 @@
             string licenseKey = "A1B2C3D4E5F6G7H8";
             string serviceURL = "https://development.avalara.net";
 
-            AddressSvc addressSvc = new AddressSvc();
+            var addressSvc = new AddressSvc
+            {
+                // Header Level Parameters
+                // Required Header Parameters
+                Configuration = 
+                {
+                    Security = 
+                    {
+                        Account = accountNumber,
+                        License = licenseKey
+                    },
+                    Url = serviceURL,
+                    ViaUrl = serviceURL
+                },
+                Profile = 
+                { 
+                    Client = "AvaTaxSample",
 
-            // Header Level Parameters
-            // Required Header Parameters
-            addressSvc.Configuration.Security.Account = accountNumber;
-            addressSvc.Configuration.Security.License = licenseKey;
-            addressSvc.Configuration.Url = serviceURL;
-            addressSvc.Configuration.ViaUrl = serviceURL;
-            addressSvc.Profile.Client = "AvaTaxSample";
+                    // Optional Header Parameters
+                    Name = "Development"
+                }
+            };
 
-            // Optional Header Parameters
-            addressSvc.Profile.Name = "Development";
-
-            ValidateRequest validateRequest = new ValidateRequest();
-            Address address = new Address();
-
+            var validateRequest = new ValidateRequest
+            {
             // Required Request Parameters
-            address.Line1 = "118 N Clark St";
-            address.City = "Chicago";
-            address.Region = "IL";
+                Address = 
+                {
+                        Line1 = "118 N Clark St",
+                        City = "Chicago",
+                        Region = "IL",
 
-            // Optional Request Parameters
-            address.Line2 = "Suite 100";
-            address.Line3 = "ATTN Accounts Payable";
-            address.Country = "US";
-            address.PostalCode = "60602";
-            validateRequest.Coordinates = true;
-            validateRequest.Taxability = true;
-            validateRequest.TextCase = TextCase.Upper;
-
-            validateRequest.Address = address;
+                        // Optional Request Parameters
+                        Line2 = "Suite 100",
+                        Line3 = "ATTN Accounts Payable",
+                        Country = "US",
+                        PostalCode = "60602"
+                },
+                Coordinates = true,
+                Taxability = true,
+                TextCase = TextCase.Upper
+            };
 
             ValidateResult validateResult = addressSvc.Validate(validateRequest);
 

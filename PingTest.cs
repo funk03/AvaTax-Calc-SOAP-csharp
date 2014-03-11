@@ -12,18 +12,28 @@
             string licenseKey = "A1B2C3D4E5F6G7H8";
             string serviceURL = "https://development.avalara.net";
 
-            TaxSvc taxSvc = new TaxSvc();
+            var taxSvc = new TaxSvc
+            {
+                // Header Level Parameters
+                // Required Header Parameters
+                Configuration =
+                {
+                    Security =
+                    {
+                        Account = accountNumber,
+                        License = licenseKey
+                    },
+                    Url = serviceURL,
+                    ViaUrl = serviceURL
+                },
+                Profile =
+                {
+                    Client = "AvaTaxSample",
 
-            // Header Level Parameters
-            // Required Header Parameters
-            taxSvc.Configuration.Security.Account = accountNumber;
-            taxSvc.Configuration.Security.License = licenseKey;
-            taxSvc.Configuration.Url = serviceURL;
-            taxSvc.Configuration.ViaUrl = serviceURL;
-            taxSvc.Profile.Client = "AvaTaxSample";
-
-            // Optional Header Parameters
-            taxSvc.Profile.Name = "Development";
+                    // Optional Header Parameters
+                    Name = "Development"
+                }
+            };
 
             PingResult pingResult = taxSvc.Ping(string.Empty);
 
