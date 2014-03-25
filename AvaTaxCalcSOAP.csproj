@@ -36,7 +36,7 @@
   <ItemGroup>
     <Reference Include="Avalara.AvaTax.Adapter, Version=14.2.0.0, Culture=neutral, PublicKeyToken=34e4ef76d6267205, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>Y:\Documents\GitHub\AvaTax-Calc-SOAP-csharp\Avalara.AvaTax.Adapter.dll</HintPath>
+      <HintPath>bin\Debug\Avalara.AvaTax.Adapter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -59,6 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
