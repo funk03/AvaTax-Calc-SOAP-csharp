@@ -2,9 +2,10 @@
 {
     using System;
     using Avalara.AvaTax.Adapter;
+    using Avalara.AvaTax.Adapter.AddressService;
     using Avalara.AvaTax.Adapter.TaxService;
 
-    public class CancelTaxTest
+    public class CommitTaxTest
     {
         public static void Test()
         {
@@ -25,20 +26,22 @@
             // Optional Header Parameters
             taxSvc.Profile.Name = "Development";
 
-            CancelTaxRequest cancelTaxRequest = new CancelTaxRequest();
+            CommitTaxRequest commitTaxRequest = new CommitTaxRequest();
+            
+            // Required Parameters
+            commitTaxRequest.DocCode = "INV001";
+            commitTaxRequest.DocType = DocumentType.SalesInvoice;
+            commitTaxRequest.CompanyCode = "APITrialCompany";
 
-            // Required Request Parameters
-            cancelTaxRequest.CompanyCode = "APITrialCompany";
-            cancelTaxRequest.DocType = DocumentType.SalesInvoice;
-            cancelTaxRequest.DocCode = "INV001";
-            cancelTaxRequest.CancelCode = CancelCode.DocVoided;
+            // Optional Parameters
+            commitTaxRequest.NewDocCode = "INV001-1";
 
-            CancelTaxResult cancelTaxResult = taxSvc.CancelTax(cancelTaxRequest);
+            CommitTaxResult commitTaxResult = taxSvc.CommitTax(commitTaxRequest);
 
-            Console.WriteLine("CancelTaxTest Result: " + cancelTaxResult.ResultCode.ToString());
-            if (!cancelTaxResult.ResultCode.Equals(SeverityLevel.Success))
+            Console.WriteLine("CommitTaxTest Result: " + commitTaxResult.ResultCode.ToString());
+            if (!commitTaxResult.ResultCode.Equals(SeverityLevel.Success))
             {
-                foreach (Message message in cancelTaxResult.Messages)
+                foreach (Message message in commitTaxResult.Messages)
                 {
                     Console.WriteLine(message.Summary);
                 }

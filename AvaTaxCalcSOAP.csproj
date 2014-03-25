@@ -34,8 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Avalara.AvaTax.Adapter">
-      <HintPath>Additional Files\Avalara.AvaTax.Adapter.dll</HintPath>
+    <Reference Include="Avalara.AvaTax.Adapter, Version=14.2.0.0, Culture=neutral, PublicKeyToken=34e4ef76d6267205, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Y:\Documents\GitHub\AvaTax-Calc-SOAP-csharp\Avalara.AvaTax.Adapter.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdjustTaxTest.cs" />
     <Compile Include="CancelTaxTest.cs" />
+    <Compile Include="CommitTaxTest.cs" />
     <Compile Include="GetTaxHistoryTest.cs" />
     <Compile Include="GetTaxTest.cs" />
     <Compile Include="PingTest.cs" />

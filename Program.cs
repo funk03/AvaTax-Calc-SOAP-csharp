@@ -12,7 +12,9 @@
                 // Make sure you enter your valid credentials in that test class.
                 PingTest.Test();
                 GetTaxTest.Test();
+                AdjustTaxTest.Test();
                 PostTaxTest.Test();
+                CommitTaxTest.Test();
                 CancelTaxTest.Test();
                 GetTaxHistoryTest.Test();
                 ValidateAddressTest.Test();
