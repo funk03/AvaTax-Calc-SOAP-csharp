@@ -38,6 +38,7 @@ Dependencies:
 
 Requirements:
 ----------
+- Some versions of Visual Studio have trouble finding the included Avalara.AvaTax.Adapter.dll - you may need to re-add this file to your project references after downloading the sample.
 - Authentication requires an valid **Account Number** and **License Key**, which should be entered in the test file (e.g. GetTaxTest.cs) you would like to run.
 - If you do not have an AvaTax account, a free trial account can be acquired through our [developer site](http://developer.avalara.com/api-get-started)
  
